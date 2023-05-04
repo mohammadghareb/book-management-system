@@ -5,8 +5,11 @@ import Footer from "./Components/Footer";
 
 const App = () => {
   return (
+    <AuthProvider>
         <NavBar />
         <Footer />
+    </AuthProvider>
+  
   );
 };
 
