@@ -1,5 +1,5 @@
 import React from "react";
-import CW_FOOTER from "../../Constants"
+import {CW_FOOTER} from "../../Constants"
 const Footer = () => {
   return (
     <footer className="blue-grey darken-4">
