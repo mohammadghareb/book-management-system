@@ -1,6 +1,6 @@
 import {  Route, Routes } from "react-router-dom";
-import Login from "../../Components/Login";
-import Dashboard from "../../Components/Dashboard";
+import Login from "../Login";
+import Dashboard from "../Dashboard";
 
 import  { Fragment } from "react";
 

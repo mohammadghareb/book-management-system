@@ -2,18 +2,22 @@ import React, { useState, useEffect, useContext } from "react";
 import firebase from "../../Configuration/Firebase";
 import M from "materialize-css";
 import { AuthContext } from "../../Helpers/AuthProvider";
+import Buttons from "./Buttons"
+import { CW_LOGIN_TITLE , CW_LOGIN_EMAIL ,CW_LOGIN_PASSWORD } from "../../Constants" 
+import { useNavigate } from 'react-router-dom';
 
-import { CW_LOGIN_TITLE , CW_LOGIN_EMAIL ,CW_LOGIN_PASSWORD,CW_LOGIN_SIGNIN,CW_LOGIN_RESET } from "../../Constants" 
-const Login = props => {
+
+const Login = () => {
   const { user } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const history = useNavigate();
 
   useEffect(() => {
     if (user) {
-      props.history.push("/books");
+      history("/books");
     }
-  }, [user,props.history]);
+  }, [user,history]);
 
   const login = async e => {
     e.preventDefault();
@@ -22,7 +26,7 @@ const Login = props => {
         .auth()
         .signInWithEmailAndPassword(email, password);
       if (user) {
-        props.history.push("/books");
+        history("/books");
       }
     } catch(error) {
       M.toast({ html: `${error.message}`, classes: "red rounded" });
@@ -59,26 +63,7 @@ const Login = props => {
                 <label htmlFor="password">{CW_LOGIN_PASSWORD}</label>
               </div>
             </div>
-            <div className="card-action center">
-              <button
-                className="waves-effect waves-light btn"
-                style={{ margin: "18px" }}
-                type="submit"
-              >
-                {CW_LOGIN_SIGNIN}
-                <i className="material-icons right">add_circle_outline</i>
-              </button>
-              <button
-                className="waves-effect waves-light btn red"
-                type="reset"
-                onClick={() => {
-                  setEmail("");
-                  setPassword("");
-                }}
-              >
-                {CW_LOGIN_RESET} <i className="material-icons right">cancel</i>
-              </button>
-            </div>
+          <Buttons handleEmail={setEmail} handlePassword={setPassword}/>
           </form>
         </div>
       </div>
