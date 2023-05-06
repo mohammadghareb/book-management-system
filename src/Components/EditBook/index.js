@@ -1,18 +1,13 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
-import firebase from "../../Configuration/Firebase";
+import { db, storage } from "../../Configuration/Firebase";
 import { Link } from "react-router-dom";
 import M from "materialize-css/dist/js/materialize.min.js";
 import spinner from "../../Assets/Images/loadingSpinner.gif";
 import { AuthContext } from "../../Helpers/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import EditBookForm from "./EditBookForm";
-import {
-  getStorage,
-  getDownloadURL,
-  ref,
-  uploadBytesResumable,
-} from "firebase/storage";
-import { collection, updateDoc } from "firebase/firestore";
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+import { doc, updateDoc } from "firebase/firestore";
 const EditBook = (props) => {
   const { user } = useContext(AuthContext);
   const { book, id, setEditMode } = props;
@@ -54,7 +49,6 @@ const EditBook = (props) => {
     }
     const modal = M.Modal.getInstance(document.getElementById("modal"));
     modal.open();
-    const storage = getStorage();
 
     const storageRef = ref(storage, `images/${imageName}`);
     const uploadTask = uploadBytesResumable(storageRef, image);
@@ -66,7 +60,7 @@ const EditBook = (props) => {
         console.log(error);
       },
       () => {
-        getDownloadURL(uploadTask.snapshot.ref).then((imageURL) => {
+        getDownloadURL(uploadTask.snapshot.ref).then(async (imageURL) => {
           const newBook = {
             title: titleInput.current.value,
             author: authorInput.current.value,
@@ -74,10 +68,10 @@ const EditBook = (props) => {
             brief: briefInput.current.value,
             imageURL,
           };
-          const db = firebase.firestore();
-          db.collection("books")
-            .doc(id)
-            .update(newBook)
+
+          const docBooksRef = doc(db, "books", id);
+
+          await updateDoc(docBooksRef, newBook)
             .then(() => {
               const modal = M.Modal.getInstance(
                 document.getElementById("modal")

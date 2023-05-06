@@ -1,18 +1,14 @@
 import React, { useState, useContext, useEffect } from "react";
-import firebase from "../../Configuration/Firebase";
+import { db, storage } from "../../Configuration/Firebase";
 import { Link } from "react-router-dom";
 import M from "materialize-css/dist/js/materialize.min.js";
 import spinner from "../../Assets/Images/loadingSpinner.gif";
 import { AuthContext } from "../../Helpers/AuthProvider";
 import { useNavigate } from "react-router-dom";
-import {
-  getStorage,
-  getDownloadURL,
-  ref,
-  uploadBytesResumable,
-} from "firebase/storage";
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { collection, addDoc } from "firebase/firestore";
 import AddBookForm from "./AddBookForm";
+import canPublishBook from "../../Helpers/date";
 const AddBook = () => {
   const { user } = useContext(AuthContext);
   const [values, setValues] = useState({
@@ -20,12 +16,13 @@ const AddBook = () => {
     author: "",
     date_published: "",
     brief: "",
+    status_published: false,
   });
   const [image, setImage] = useState("");
   const [imageName, setImageName] = useState("");
   const [imagePreview, setImagePreview] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const { title, author, date_published, brief } = values;
+  const { title, author, date_published, brief, status_published } = values;
   const history = useNavigate();
 
   useEffect(() => {
@@ -53,9 +50,8 @@ const AddBook = () => {
       return;
     }
     setIsLoading(true);
-    // Create a root reference
-    const storage = getStorage();
-
+    // Check publish time if its greater than the current time, to change upon the status(draft/publish)
+    const isReadyToPublishDate = canPublishBook(date_published);
     const storageRef = ref(storage, `images/${imageName}`);
     const uploadTask = uploadBytesResumable(storageRef, image);
 
@@ -73,9 +69,9 @@ const AddBook = () => {
             date_published,
             brief,
             imageURL,
+            status_published: isReadyToPublishDate,
           };
 
-          const db = firebase.firestore();
           addDoc(collection(db, "books"), newBook)
             .then(() => {
               M.toast({
@@ -119,6 +115,7 @@ const AddBook = () => {
       author: "",
       date_published: "",
       brief: "",
+      status_published: false,
     });
     setImage("");
   };

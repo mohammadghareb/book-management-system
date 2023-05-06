@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import firebase from "../../Configuration/Firebase";
+import { logInWithEmailAndPassword } from "../../Configuration/Firebase";
 import M from "materialize-css";
 import { AuthContext } from "../../Helpers/AuthProvider";
 import Buttons from "./Buttons";
@@ -9,6 +9,7 @@ import {
   CW_LOGIN_PASSWORD,
 } from "../../Constants";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const { user } = useContext(AuthContext);
@@ -25,9 +26,7 @@ const Login = () => {
   const login = async (e) => {
     e.preventDefault();
     try {
-      const user = await firebase
-        .auth()
-        .signInWithEmailAndPassword(email, password);
+      const user = await logInWithEmailAndPassword(email, password);
       if (user) {
         history("/books");
       }
@@ -68,6 +67,21 @@ const Login = () => {
               </div>
               <Buttons handleEmail={setEmail} handlePassword={setPassword} />
             </form>
+            <div
+              style={{
+                marginLeft: "150px",
+                display: "row",
+                flexDirection: "row",
+              }}
+            >
+              {" "}
+              <div>
+                <Link to="/reset">Forgot Password</Link>
+              </div>
+              <div>
+                Don't have an account? <Link to="/register">Register</Link> now.
+              </div>
+            </div>
           </div>
         </div>
       </div>

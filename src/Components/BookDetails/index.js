@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useContext } from "react";
-import firebase from "../../Configuration/Firebase";
+import { db } from "../../Configuration/Firebase";
 import { Link } from "react-router-dom";
 import spinner from "../../Assets/Images/loadingSpinner.gif";
 import { AuthContext } from "../../Helpers/AuthProvider";
 import EditBook from "../EditBook";
 import { useNavigate, useParams } from "react-router-dom";
 import BookInfo from "./BookInfo";
+import { doc, onSnapshot, deleteDoc } from "firebase/firestore";
+
 const BookDetails = () => {
   const { user } = useContext(AuthContext);
   const [book, setBook] = useState();
@@ -13,29 +15,21 @@ const BookDetails = () => {
   const history = useNavigate();
 
   let { id } = useParams();
-  console.log("id", id);
+  const docBooksRef = doc(db, "books", id);
   useEffect(() => {
     if (!user) {
       history("/");
     }
-    const unsubscribe = firebase
-      .firestore()
-      .collection("books")
-      .doc(id)
-      .onSnapshot(function (doc) {
-        setBook(doc.data());
-      });
+    const unsubscribe = onSnapshot(docBooksRef, function (doc) {
+      setBook(doc.data());
+    });
 
     return () => unsubscribe();
   }, [user, history, id]);
 
   const deleteBook = () => {
     if (window.confirm("Are you sure to delete this book?")) {
-      firebase
-        .firestore()
-        .collection("books")
-        .doc(id)
-        .delete()
+      deleteDoc(docBooksRef)
         .then(function () {
           history("/books");
         })

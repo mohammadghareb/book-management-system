@@ -4,16 +4,15 @@ import spinner from "../../Assets/Images/loadingSpinner.gif";
 import { AuthContext } from "../../Helpers/AuthProvider";
 import { CW_ADD_BOOK, CW_SEARCH_BY_AUTHOR } from "../../Constants";
 import Books from "./Books";
-import firebase from "../../Configuration/Firebase";
+import { db } from "../../Configuration/Firebase";
 import { useNavigate } from "react-router-dom";
-
+import { collection, onSnapshot } from "firebase/firestore";
 const Dashboard = () => {
   const { user } = useContext(AuthContext);
   const [books, setBooks] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [searchAuthor, setSearchAuthor] = useState("");
-  const db = firebase.firestore();
-  const booksRef = db.collection("books");
+  const booksRef = collection(db, "books");
   const history = useNavigate();
 
   useEffect(() => {
@@ -21,7 +20,8 @@ const Dashboard = () => {
       history("/");
     }
     setIsLoading(true);
-    const unsubscribe = booksRef.onSnapshot(
+    const unsubscribe = onSnapshot(
+      booksRef,
       (snapshot) => {
         const allBooks = snapshot.docs.map((doc) => ({
           id: doc.id,

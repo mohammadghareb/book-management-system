@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { CW_NAVBAR } from "../../Constants";
 import { AuthContext } from "../../Helpers/AuthProvider";
-import firebase from "../../Configuration/Firebase";
+import { logout } from "../../Configuration/Firebase";
 const NavBar = () => {
   const { user } = useContext(AuthContext);
 
@@ -13,7 +13,7 @@ const NavBar = () => {
           <div style={{ float: "right", marginRight: "20px" }}>
             <button
               className="btn white black-text waves-effect waves-teal"
-              onClick={() => firebase.auth().signOut()}
+              onClick={() => logout()}
             >
               Logout
             </button>

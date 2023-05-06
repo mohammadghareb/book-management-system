@@ -10,6 +10,8 @@ const CW_SEARCH_BY_AUTHOR = "Search by author";
 const CW_SEARCH_BY_TITLE = "Search by title";
 const CW_MANAGE_BOOKS = "Manage Books";
 const CW_ADD_BOOK = "ADD";
+const CW_BACK_LOGIN = "Back to Login";
+
 export {
   CW_FOOTER,
   CW_NAVBAR,
@@ -22,4 +24,5 @@ export {
   CW_SEARCH_BY_TITLE,
   CW_MANAGE_BOOKS,
   CW_ADD_BOOK,
+  CW_BACK_LOGIN,
 };

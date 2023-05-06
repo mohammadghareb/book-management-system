@@ -5,7 +5,8 @@ import AddBook from "../AddBook";
 import BookDetails from "../BookDetails";
 
 import { Fragment } from "react";
-
+import ResetPassword from "../ResetPassword";
+import Register from "../Register";
 const AppRouter = () => {
   return (
     <Fragment>
@@ -15,6 +16,8 @@ const AppRouter = () => {
           <Route path="/books" element={<Dashboard />} />
           <Route path="/add/book" element={<AddBook />} />
           <Route path="/book/:id" element={<BookDetails />} />
+          <Route path="/reset" element={<ResetPassword />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
       </div>
     </Fragment>
