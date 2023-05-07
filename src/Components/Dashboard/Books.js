@@ -6,7 +6,7 @@ import {
 } from "../../Constants";
 const Books = ({ books, searchAuthor }) => {
   return (
-    <div className="col s12 m9 right-panel">
+    <div className="col s6 m12">
       {books.length > 0 ? (
         <div className="row" style={{ padding: "16px" }}>
           {books
@@ -14,7 +14,7 @@ const Books = ({ books, searchAuthor }) => {
               book.author.toLowerCase().includes(searchAuthor.toLowerCase())
             )
             .map((book) => (
-              <div className="col s12 m4" key={book.id}>
+              <div className="col s3 m3" key={book.id}>
                 <div className="card grey lighten-5 z-depth-1 hoverable">
                   <div className="card-image">
                     <img

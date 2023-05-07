@@ -64,7 +64,7 @@ const Dashboard = () => {
           <input
             disableUnderline={true}
             id="author"
-            type="text"
+            type="search"
             className="search"
             value={searchAuthor}
             onChange={(e) => setSearchAuthor(e.target.value)}
