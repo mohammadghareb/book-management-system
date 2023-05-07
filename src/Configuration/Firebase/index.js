@@ -16,13 +16,13 @@ import {
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 // I haven't use .env for this project, but for security reason we should add .env to hide these credentials
 const firebaseConfig = {
-  apiKey: "AIzaSyC98XNR06ipidwtzAhF7cEu_rscnoMr7RI",
-  authDomain: "book-management-system-804a1.firebaseapp.com",
-  projectId: "book-management-system-804a1",
-  storageBucket: "book-management-system-804a1.appspot.com",
-  messagingSenderId: "1031203702627",
-  appId: "1:1031203702627:web:23a8a707139def7f1af556",
-  measurementId: "G-N9C47BF9MZ",
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID,
+  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
 };
 
 const app = initializeApp(firebaseConfig);
