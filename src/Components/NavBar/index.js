@@ -19,7 +19,7 @@ const NavBar = () => {
             </button>
           </div>
         ) : null}
-        <div className="container nav-wrapper">
+        <div class="header--title">
           <Link to="/books">
             <span className="brand-logo">{CW_NAVBAR_TITLE}</span>
           </Link>
