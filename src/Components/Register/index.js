@@ -7,6 +7,16 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { db, auth } from "../../Configuration/Firebase";
 import spinner from "../../Assets/Images/loadingSpinner.gif";
 import { AuthContext } from "../../Helpers/AuthProvider";
+import {
+  CW_REGISTER_AUTHOR_BIO,
+  CW_REGISTER_BIRTHDATE,
+  CW_REGISTER_PASSWORD,
+  CW_REGISTER_EMAIL,
+  CW_REGISTER_NAME,
+  CW_REGISTER_TITLE,
+  CW_REGISTER_SUBMIT,
+  CW_REGISTER_ALREADY,
+} from "../../Constants";
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -65,7 +75,7 @@ const Register = () => {
         <div className="col s12 m6 offset-m2">
           <div className="card">
             <div className="card-content">
-              <h5 className="card-title center">Register</h5>
+              <h5 className="card-title center">{CW_REGISTER_TITLE}</h5>
               <div className="row">
                 <form
                   encType="multipart/form-data"
@@ -80,7 +90,7 @@ const Register = () => {
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                       />
-                      <label htmlFor="title">Full Name</label>
+                      <label htmlFor="title">{CW_REGISTER_NAME}</label>
                     </div>
                     <div className="input-field col s6">
                       <input
@@ -90,7 +100,7 @@ const Register = () => {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                       />
-                      <label htmlFor="email">E-mail Address</label>
+                      <label htmlFor="email">{CW_REGISTER_EMAIL}</label>
                     </div>
                     <div className="input-field col s6">
                       <input
@@ -100,7 +110,7 @@ const Register = () => {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                       />
-                      <label htmlFor="Password">Password</label>
+                      <label htmlFor="Password">{CW_REGISTER_PASSWORD}</label>
                     </div>
                     <div className="input-field col s5">
                       <input
@@ -110,7 +120,7 @@ const Register = () => {
                         onChange={(e) => setBirthDate(e.target.value)}
                         value={birthDate}
                       />
-                      <label htmlFor="birthDate">BirthDate</label>
+                      <label htmlFor="birthDate">{CW_REGISTER_BIRTHDATE}</label>
                     </div>
                     <div className="input-field col s10">
                       <textarea
@@ -120,7 +130,9 @@ const Register = () => {
                         onChange={(e) => setAuthorBio(e.target.value)}
                         value={authorBio}
                       ></textarea>
-                      <label htmlFor="authorBio">Author Bio</label>
+                      <label htmlFor="authorBio">
+                        {CW_REGISTER_AUTHOR_BIO}
+                      </label>
                     </div>
                   </div>
 
@@ -130,11 +142,11 @@ const Register = () => {
                       style={{ margin: "8px 18px" }}
                       type="submit"
                     >
-                      Register{" "}
+                      {CW_REGISTER_SUBMIT}{" "}
                       <i className="material-icons right">add_circle_outline</i>
                     </button>
                     <div>
-                      Already have an account? <Link to="/">Login</Link> now.
+                      {CW_REGISTER_ALREADY} <Link to="/">Login</Link> now.
                     </div>
                   </div>
                 </form>

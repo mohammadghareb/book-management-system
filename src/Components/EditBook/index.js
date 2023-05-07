@@ -8,6 +8,12 @@ import { useNavigate } from "react-router-dom";
 import EditBookForm from "./EditBookForm";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { doc, updateDoc } from "firebase/firestore";
+import {
+  CW_EDIT_TITLE,
+  CW_EDIT_COVER_IMAGE,
+  CW_EDIT_BOOK,
+  CW_EDIT_BACK_DASHBOARD,
+} from "../../Constants";
 const EditBook = (props) => {
   const { user } = useContext(AuthContext);
   const { book, id, setEditMode } = props;
@@ -109,15 +115,16 @@ const EditBook = (props) => {
       <div id="modal" className="modal">
         <div className="modal-content center">
           <img src={spinner} alt="spinner" />
-          <h4>Updating book...</h4>
+          <h4>{CW_EDIT_TITLE}</h4>
         </div>
       </div>
       <div className="row card">
         <Link to="/books" className="waves-effect waves-light btn">
-          <i className="material-icons left">arrow_back</i>Back to dashboard
+          <i className="material-icons left">arrow_back</i>
+          {CW_EDIT_BACK_DASHBOARD}
         </Link>
         <p className="center" style={{ fontSize: "20px" }}>
-          Edit Book
+          {CW_EDIT_BOOK}
         </p>
 
         <EditBookForm
@@ -131,7 +138,7 @@ const EditBook = (props) => {
           briefInput={briefInput}
         />
         <div className="col s12 m5 center">
-          <p>Cover Image</p>
+          <p>{CW_EDIT_COVER_IMAGE}</p>
           <img src={imagePreview} alt={imageName} className="responsive-img" />
         </div>
       </div>

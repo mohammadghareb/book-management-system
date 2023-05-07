@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <footer className="blue-grey darken-2">
       <div className="center">
-        <p className="white-text">{CW_FOOTER}</p>
+        <p className="white-text">&copy; {CW_FOOTER}</p>
       </div>
     </footer>
   );

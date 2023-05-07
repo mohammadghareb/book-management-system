@@ -7,6 +7,8 @@ import {
   CW_LOGIN_TITLE,
   CW_LOGIN_EMAIL,
   CW_LOGIN_PASSWORD,
+  CW_LOGIN_DONT,
+  CW_LOGIN_FORGET,
 } from "../../Constants";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -76,10 +78,10 @@ const Login = () => {
             >
               {" "}
               <div>
-                <Link to="/reset">Forgot Password</Link>
+                <Link to="/reset">{CW_LOGIN_FORGET}</Link>
               </div>
               <div>
-                Don't have an account? <Link to="/register">Register</Link> now.
+                {CW_LOGIN_DONT} <Link to="/register">Register</Link> now.
               </div>
             </div>
           </div>

@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { CW_NAVBAR } from "../../Constants";
+import { CW_NAVBAR_TITLE, CW_NAVBAR_LOGOUT } from "../../Constants";
 import { AuthContext } from "../../Helpers/AuthProvider";
 import { logout } from "../../Configuration/Firebase";
 const NavBar = () => {
@@ -15,13 +15,13 @@ const NavBar = () => {
               className="btn white black-text waves-effect waves-teal"
               onClick={() => logout()}
             >
-              Logout
+              {CW_NAVBAR_LOGOUT}
             </button>
           </div>
         ) : null}
         <div className="container nav-wrapper">
           <Link to="/books">
-            <span className="brand-logo">{CW_NAVBAR}</span>
+            <span className="brand-logo">{CW_NAVBAR_TITLE}</span>
           </Link>
         </div>
       </nav>

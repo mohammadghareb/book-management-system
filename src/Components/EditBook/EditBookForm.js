@@ -1,5 +1,13 @@
 import React from "react";
-
+import {
+  CW_EDIT_BUTTON_TITLE,
+  CW_EDIT_BUTTON_AUTHOR,
+  CW_EDIT_BUTTON_DATE,
+  CW_EDIT_BUTTON_BRIEF,
+  CW_EDIT_BUTTON_COVER_IMAGE,
+  CW_EDIT_BUTTON_UPDATE_BOOK,
+  CW_EDIT_BUTTON_CANCEL,
+} from "../../Constants";
 const EditBookForm = ({
   handleSubmit,
   book,
@@ -22,7 +30,7 @@ const EditBookForm = ({
               defaultValue={book.title}
               ref={titleInput}
             />
-            <label htmlFor="title">Title</label>
+            <label htmlFor="title">{CW_EDIT_BUTTON_TITLE}</label>
           </div>
           <div className="input-field col s6">
             <input
@@ -32,7 +40,7 @@ const EditBookForm = ({
               ref={authorInput}
               defaultValue={book.author}
             />
-            <label htmlFor="author">Author</label>
+            <label htmlFor="author">{CW_EDIT_BUTTON_AUTHOR}</label>
           </div>
 
           <div className="input-field col s4">
@@ -43,7 +51,7 @@ const EditBookForm = ({
               defaultValue={book.date_published}
               ref={dateInput}
             />
-            <label htmlFor="date_published">Date Published</label>
+            <label htmlFor="date_published">{CW_EDIT_BUTTON_DATE}</label>
           </div>
           <div className="input-field col s12">
             <textarea
@@ -52,13 +60,13 @@ const EditBookForm = ({
               defaultValue={book.brief}
               ref={briefInput}
             ></textarea>
-            <label htmlFor="description">Brief</label>
+            <label htmlFor="description">{CW_EDIT_BUTTON_BRIEF}</label>
           </div>
         </div>
         <div className="file-field input-field">
           <div className="btn purple darken-4 col s12">
             <span>
-              Upload Cover Image
+              {CW_EDIT_BUTTON_COVER_IMAGE}
               <i className="material-icons right">add_circle_outline</i>
             </span>
             <input type="file" onChange={uploadImage} accept="image/*" />
@@ -74,14 +82,15 @@ const EditBookForm = ({
             style={{ margin: "8px 18px" }}
             type="submit"
           >
-            Update BOOK{" "}
+            {CW_EDIT_BUTTON_UPDATE_BOOK}{" "}
             <i className="material-icons right">add_circle_outline</i>
           </button>
           <button
             onClick={() => setEditMode()}
             className="waves-effect waves-light btn red"
           >
-            Cancel <i className="material-icons right">cancel</i>
+            {CW_EDIT_BUTTON_CANCEL}{" "}
+            <i className="material-icons right">cancel</i>
           </button>
         </div>
       </form>
