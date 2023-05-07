@@ -15,22 +15,16 @@ This is what a running Book Management System looks like:
 * Register new author account
 * Login 
  
-### Built With
-
-* [![Next][Next.js]][Next-url]
-* [![React][React.js]][React-url]
-* [![Vue][Vue.js]][Vue-url]
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 ## What is the use of this Repo
 
 This is a ReactJS and Firebase Project which demonstrates the following
-1. Creating a Component in React
+1. Creating a Component in React  
 2. Making calls between ReactJs and Firebase
-3. Communicating between parent and child component
-4. Using lastest version of React v18  with Firebase v9
-5. File structure to organize the project
+3. Authentication using Firebase Authentication to register, login and logout
+4. Firestore database to store collections and documents
+5. Storage Firebase to store images of books
+6. Communicating between parent and child component
+7. Using lastest version of React v18  with Firebase v9
+8. File structure to organize the project
  
