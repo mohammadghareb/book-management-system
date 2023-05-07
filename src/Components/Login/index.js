@@ -14,7 +14,7 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 const Login = () => {
-  const { user, setIsAnonymous } = useContext(AuthContext);
+  const { user, setIsAnonymous, setUser } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const history = useNavigate();
@@ -33,6 +33,7 @@ const Login = () => {
     try {
       const user = await logInWithEmailAndPassword(email, password);
       if (user) {
+        setUser(user);
         setIsAnonymous(false);
 
         history("/");
