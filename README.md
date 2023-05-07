@@ -15,4 +15,12 @@ This is what a running Book Management System looks like:
 * Register new author account
 * Login 
 
- 
+ ## What is the use of this Repo
+
+This is a ReactJS and Firebase Project which demonstrates the following
+1. Creating a Component in React
+2. Making calls between ReactJs and Firebase
+3. Communicating between parent and child component
+4. Using lastest version of React v18  with Firebase v9
+5. File structure to organize the project
+
