@@ -14,14 +14,17 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 const Login = () => {
-  const { user } = useContext(AuthContext);
+  const { user, setIsAnonymous } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const history = useNavigate();
 
   useEffect(() => {
     if (user) {
-      history("/books");
+      setIsAnonymous(false);
+      history("/");
+    } else {
+      setIsAnonymous(true);
     }
   }, [user, history]);
 
@@ -30,9 +33,13 @@ const Login = () => {
     try {
       const user = await logInWithEmailAndPassword(email, password);
       if (user) {
-        history("/books");
+        setIsAnonymous(false);
+
+        history("/");
       }
     } catch (error) {
+      setIsAnonymous(true);
+
       M.toast({ html: `${error.message}`, classes: "red rounded" });
     }
   };

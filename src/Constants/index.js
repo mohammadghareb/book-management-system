@@ -59,6 +59,8 @@ const CW_DETAILS_BRIEF = "Brief:";
 const CW_DETAILS_PAGE_TITLE = "Details";
 const CW_DETAILS_EDIT = "Edit";
 const CW_DETAILS_DELETE = "Delete";
+const CW_NAVBAR_LOGIN = "Login";
+
 export {
   CW_FOOTER,
   CW_NAVBAR_TITLE,
@@ -116,4 +118,5 @@ export {
   CW_DETAILS_PAGE_TITLE,
   CW_DETAILS_EDIT,
   CW_DETAILS_DELETE,
+  CW_NAVBAR_LOGIN,
 };

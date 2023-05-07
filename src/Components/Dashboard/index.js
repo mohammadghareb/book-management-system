@@ -2,13 +2,14 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import spinner from "../../Assets/Images/loadingSpinner.gif";
 import { AuthContext } from "../../Helpers/AuthProvider";
-import { CW_ADD_BOOK, CW_SEARCH_BY_AUTHOR } from "../../Constants";
+import { CW_SEARCH_BY_AUTHOR } from "../../Constants";
 import Books from "./Books";
 import { db } from "../../Configuration/Firebase";
 import { useNavigate } from "react-router-dom";
 import { collection, onSnapshot } from "firebase/firestore";
+import AddButton from "./AddButton";
 const Dashboard = () => {
-  const { user } = useContext(AuthContext);
+  const { user, isAnonymous, setIsAnonymous } = useContext(AuthContext);
   const [books, setBooks] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [searchAuthor, setSearchAuthor] = useState("");
@@ -17,7 +18,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     if (!user) {
-      history("/");
+      setIsAnonymous(true);
     }
     setIsLoading(true);
     const unsubscribe = onSnapshot(
@@ -43,22 +44,8 @@ const Dashboard = () => {
     </div>
   ) : (
     <div className="row">
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          float: "left",
-          marginRight: "20px",
-        }}
-      >
-        <Link
-          to="/add/book"
-          className="waves-effect waves-light btn green darken-1 hoverable"
-        >
-          {CW_ADD_BOOK} <i className="material-icons right">add</i>
-        </Link>
-      </div>
+      {!isAnonymous ? <AddButton /> : null}
+
       <div style={{ float: "left", marginTop: "15px" }}>
         <div className="search">
           <input

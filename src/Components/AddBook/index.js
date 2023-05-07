@@ -28,7 +28,7 @@ const AddBook = () => {
 
   useEffect(() => {
     if (!user) {
-      history("/");
+      history("/login");
     }
   }, [user, history]);
 
@@ -90,7 +90,7 @@ const AddBook = () => {
               });
               setIsLoading(false);
             });
-          history("/books");
+          history("/");
         });
       }
     );
@@ -128,7 +128,7 @@ const AddBook = () => {
   ) : (
     <div className="row">
       <div className="col s12 m8 offset-m2">
-        <Link to="/books" className="waves-effect waves-light btn">
+        <Link to="/" className="waves-effect waves-light btn">
           <i className="material-icons left">arrow_back</i>
           {CW_ADD_BOOK_BACK}
         </Link>

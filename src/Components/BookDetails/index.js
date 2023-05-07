@@ -10,7 +10,7 @@ import { doc, onSnapshot, deleteDoc } from "firebase/firestore";
 import { CW_DETAILS_BACK } from "../../Constants";
 
 const BookDetails = () => {
-  const { user } = useContext(AuthContext);
+  const { user, setIsAnonymous } = useContext(AuthContext);
   const [book, setBook] = useState();
   const [editMode, setEditMode] = useState(false);
   const history = useNavigate();
@@ -19,7 +19,7 @@ const BookDetails = () => {
   const docBooksRef = doc(db, "books", id);
   useEffect(() => {
     if (!user) {
-      history("/");
+      setIsAnonymous(true);
     }
     const unsubscribe = onSnapshot(docBooksRef, function (doc) {
       setBook(doc.data());
@@ -32,7 +32,7 @@ const BookDetails = () => {
     if (window.confirm("Are you sure to delete this book?")) {
       deleteDoc(docBooksRef)
         .then(function () {
-          history("/books");
+          history("/");
         })
         .catch(function (error) {
           console.error("Error removing document: ", error);
@@ -48,7 +48,7 @@ const BookDetails = () => {
   return (
     <div className="container">
       {editMode ? null : (
-        <Link to="/books" className="waves-effect waves-light btn">
+        <Link to="/" className="waves-effect waves-light btn">
           <i className="material-icons left">arrow_back</i>
           {CW_DETAILS_BACK}
         </Link>

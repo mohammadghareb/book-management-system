@@ -26,7 +26,7 @@ const Register = () => {
   const [authorBio, setAuthorBio] = useState("");
   const history = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
-  const { user } = useContext(AuthContext);
+  const { user, setIsAnonymous } = useContext(AuthContext);
 
   useEffect(() => {
     if (user) {
@@ -38,31 +38,45 @@ const Register = () => {
     M.AutoInit();
 
     setIsLoading(true);
+    try {
+      const user = await createUserWithEmailAndPassword(auth, email, password);
 
-    createUserWithEmailAndPassword(auth, email, password);
-    const newAuthor = {
-      name,
-      email,
-      birthDate,
-      authorBio,
-    };
+      if (user) {
+        setIsAnonymous(false);
 
-    addDoc(collection(db, "authors"), newAuthor)
-      .then(() => {
-        M.toast({
-          html: "Author added succesfully",
-          classes: "green darken-1 rounded",
-        });
-        setIsLoading(false);
-      })
-      .catch(() => {
-        M.toast({
-          html: "Something went wrong. Please try again.",
-          classes: "red darken-1 rounded",
-        });
-        setIsLoading(false);
-      });
-    history("/books");
+        const newAuthor = {
+          name,
+          email,
+          birthDate,
+          authorBio,
+        };
+
+        addDoc(collection(db, "authors"), newAuthor)
+          .then(() => {
+            M.toast({
+              html: "Author added succesfully",
+              classes: "green darken-1 rounded",
+            });
+            setIsAnonymous(false);
+
+            setIsLoading(false);
+          })
+          .catch(() => {
+            M.toast({
+              html: "Something went wrong. Please try again.",
+              classes: "red darken-1 rounded",
+            });
+            setIsAnonymous(true);
+
+            setIsLoading(false);
+          });
+      }
+    } catch (error) {
+      setIsAnonymous(true);
+      history("/register");
+
+      M.toast({ html: `${error.message}`, classes: "red rounded" });
+    }
   };
 
   return isLoading ? (

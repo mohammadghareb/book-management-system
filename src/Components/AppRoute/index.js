@@ -12,8 +12,8 @@ const AppRouter = () => {
     <Fragment>
       <div className="content">
         <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/books" element={<Dashboard />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Dashboard />} />
           <Route path="/add/book" element={<AddBook />} />
           <Route path="/book/:id" element={<BookDetails />} />
           <Route path="/reset" element={<ResetPassword />} />

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   CW_DETAILS_TITLE,
   CW_DETAILS_AUTHOR,
@@ -8,7 +8,11 @@ import {
   CW_DETAILS_EDIT,
   CW_DETAILS_DELETE,
 } from "../../Constants";
+import { AuthContext } from "../../Helpers/AuthProvider";
+
 const BookInfo = ({ book, editMode, deleteBook, editBook }) => {
+  const { isAnonymous } = useContext(AuthContext);
+
   return (
     <div className="row card">
       <div className="col m4">
@@ -23,7 +27,7 @@ const BookInfo = ({ book, editMode, deleteBook, editBook }) => {
       <div className="col m6">
         <div className="actions">
           <h4>{CW_DETAILS_PAGE_TITLE}</h4>
-          {editMode ? null : (
+          {isAnonymous ? null : (
             <div>
               <button
                 className="btn waves-effect waves-light green"
