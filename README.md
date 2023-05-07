@@ -17,9 +17,13 @@ This is what a running Book Management System looks like:
  
 ### Built With
 
-* [![React][React.js]] 
-* [![Firebase][firebase.google.com]] 
- 
+* [![Next][Next.js]][Next-url]
+* [![React][React.js]][React-url]
+* [![Vue][Vue.js]][Vue-url]
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
 
 ## What is the use of this Repo
 
