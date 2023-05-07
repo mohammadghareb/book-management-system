@@ -1,5 +1,13 @@
 import React from "react";
-
+import {
+  CW_DETAILS_TITLE,
+  CW_DETAILS_AUTHOR,
+  CW_DETAILS_DATE,
+  CW_DETAILS_BRIEF,
+  CW_DETAILS_PAGE_TITLE,
+  CW_DETAILS_EDIT,
+  CW_DETAILS_DELETE,
+} from "../../Constants";
 const BookInfo = ({ book, editMode, deleteBook, editBook }) => {
   return (
     <div className="row card">
@@ -14,7 +22,7 @@ const BookInfo = ({ book, editMode, deleteBook, editBook }) => {
       </div>
       <div className="col m6">
         <div className="actions">
-          <h4>Details</h4>
+          <h4>{CW_DETAILS_PAGE_TITLE}</h4>
           {editMode ? null : (
             <div>
               <button
@@ -24,7 +32,7 @@ const BookInfo = ({ book, editMode, deleteBook, editBook }) => {
                 style={{ marginRight: "15px" }}
                 onClick={editBook}
               >
-                Edit
+                {CW_DETAILS_EDIT}
                 <i className="material-icons right">edit</i>
               </button>
               <button
@@ -33,7 +41,7 @@ const BookInfo = ({ book, editMode, deleteBook, editBook }) => {
                 name="action"
                 onClick={deleteBook}
               >
-                Delete
+                {CW_DETAILS_DELETE}
                 <i className="material-icons right">delete</i>
               </button>
             </div>
@@ -42,22 +50,22 @@ const BookInfo = ({ book, editMode, deleteBook, editBook }) => {
         <div className="row">
           <div className="col">
             <h6>
-              <strong>Title: </strong>
+              <strong>{CW_DETAILS_TITLE} </strong>
               {book.title}
             </h6>
             <h6>
-              <strong>Author: </strong>
+              <strong>{CW_DETAILS_AUTHOR} </strong>
               {book.author}
             </h6>
           </div>
           <div className="col">
             <h6>
-              <strong>Date: </strong>
+              <strong>{CW_DETAILS_DATE} </strong>
               {book.date_published}
             </h6>
 
             <h6>
-              <strong>Brief: </strong>
+              <strong>{CW_DETAILS_BRIEF} </strong>
               {book.brief}
             </h6>
           </div>

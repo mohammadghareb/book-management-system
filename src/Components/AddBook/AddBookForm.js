@@ -1,4 +1,14 @@
 import React from "react";
+import {
+  CW_ADD_BUTTON_TITLE,
+  CW_ADD_BUTTON_AUTHOR,
+  CW_ADD_BUTTON_DATE,
+  CW_ADD_BUTTON_BRIEF,
+  CW_ADD_BUTTON_COVER_IMAGE,
+  CW_ADD_BUTTON_UPLOAD_COVER_IMAGE,
+  CW_ADD_BUTTON_ADD_BOOK,
+  CW_ADD_BUTTON_RESET,
+} from "../../Constants";
 const AddBookForm = ({
   handleSubmit,
   handleChange,
@@ -21,7 +31,7 @@ const AddBookForm = ({
                 onChange={handleChange("title")}
                 value={values.title}
               />
-              <label htmlFor="title">Title</label>
+              <label htmlFor="title">{CW_ADD_BUTTON_TITLE}</label>
             </div>
             <div className="input-field col s6">
               <input
@@ -31,7 +41,7 @@ const AddBookForm = ({
                 onChange={handleChange("author")}
                 value={values.author}
               />
-              <label htmlFor="author">Author</label>
+              <label htmlFor="author">{CW_ADD_BUTTON_AUTHOR}</label>
             </div>
 
             <div className="input-field col s4">
@@ -42,7 +52,7 @@ const AddBookForm = ({
                 onChange={handleChange("date_published")}
                 value={values.date_published}
               />
-              <label htmlFor="date_published">Date Published</label>
+              <label htmlFor="date_published">{CW_ADD_BUTTON_DATE}</label>
             </div>
             <div className="input-field col s12">
               <textarea
@@ -51,12 +61,12 @@ const AddBookForm = ({
                 onChange={handleChange("brief")}
                 value={values.brief}
               ></textarea>
-              <label htmlFor="brief">brief</label>
+              <label htmlFor="brief">{CW_ADD_BUTTON_BRIEF}</label>
             </div>
           </div>
           <div className="file-field input-field">
             <div className="btn purple darken-4">
-              <span>Upload Cover Image</span>
+              <span>{CW_ADD_BUTTON_COVER_IMAGE}</span>
               <input type="file" onChange={uploadImage} accept="image/*" />
             </div>
 
@@ -70,7 +80,7 @@ const AddBookForm = ({
               style={{ margin: "8px 18px" }}
               type="submit"
             >
-              ADD BOOK{" "}
+              {CW_ADD_BUTTON_ADD_BOOK}{" "}
               <i className="material-icons right">add_circle_outline</i>
             </button>
             <button
@@ -78,13 +88,14 @@ const AddBookForm = ({
               type="reset"
               onClick={resetForm}
             >
-              Reset <i className="material-icons right">cancel</i>
+              {CW_ADD_BUTTON_RESET}{" "}
+              <i className="material-icons right">cancel</i>
             </button>
           </div>
         </form>
       </div>
       <div className="col s12 m5 center">
-        <p>Cover Image</p>
+        <p> {CW_ADD_BUTTON_UPLOAD_COVER_IMAGE}</p>
         <img src={imagePreview} alt={imageName} className="responsive-img" />
       </div>
     </div>

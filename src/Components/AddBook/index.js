@@ -9,6 +9,7 @@ import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { collection, addDoc } from "firebase/firestore";
 import AddBookForm from "./AddBookForm";
 import canPublishBook from "../../Helpers/date";
+import { CW_ADD_BOOK_NEW, CW_ADD_BOOK_BACK } from "../../Constants";
 const AddBook = () => {
   const { user } = useContext(AuthContext);
   const [values, setValues] = useState({
@@ -128,12 +129,13 @@ const AddBook = () => {
     <div className="row">
       <div className="col s12 m8 offset-m2">
         <Link to="/books" className="waves-effect waves-light btn">
-          <i className="material-icons left">arrow_back</i>Back to dashboard
+          <i className="material-icons left">arrow_back</i>
+          {CW_ADD_BOOK_BACK}
         </Link>
 
         <div className="card">
           <div className="card-content">
-            <h5 className="card-title center">Add New Book</h5>
+            <h5 className="card-title center">{CW_ADD_BOOK_NEW}</h5>
             <AddBookForm
               handleSubmit={handleSubmit}
               handleChange={handleChange}

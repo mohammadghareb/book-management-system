@@ -7,6 +7,7 @@ import EditBook from "../EditBook";
 import { useNavigate, useParams } from "react-router-dom";
 import BookInfo from "./BookInfo";
 import { doc, onSnapshot, deleteDoc } from "firebase/firestore";
+import { CW_DETAILS_BACK } from "../../Constants";
 
 const BookDetails = () => {
   const { user } = useContext(AuthContext);
@@ -48,7 +49,8 @@ const BookDetails = () => {
     <div className="container">
       {editMode ? null : (
         <Link to="/books" className="waves-effect waves-light btn">
-          <i className="material-icons left">arrow_back</i>Back to dashboard
+          <i className="material-icons left">arrow_back</i>
+          {CW_DETAILS_BACK}
         </Link>
       )}
       {book ? (
