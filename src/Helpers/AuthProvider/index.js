@@ -5,12 +5,15 @@ export const AuthContext = React.createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [isAnonymous, setIsAnonymous] = useState(true);
 
   useEffect(() => {
     auth.onAuthStateChanged(setUser);
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user }}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={{ user, isAnonymous, setIsAnonymous }}>
+      {children}
+    </AuthContext.Provider>
   );
 };

@@ -14,8 +14,9 @@ import {
   CW_EDIT_BOOK,
   CW_EDIT_BACK_DASHBOARD,
 } from "../../Constants";
+
 const EditBook = (props) => {
-  const { user } = useContext(AuthContext);
+  const { user, isAnonymous, setIsAnonymous } = useContext(AuthContext);
   const { book, id, setEditMode } = props;
 
   const titleInput = useRef();
@@ -30,7 +31,7 @@ const EditBook = (props) => {
 
   useEffect(() => {
     if (!user) {
-      history("/");
+      history("/login");
     }
     M.AutoInit();
     M.updateTextFields();
@@ -94,7 +95,7 @@ const EditBook = (props) => {
                 classes: "red darken-1 rounded",
               });
             });
-          history("/books");
+          history("/");
         });
       }
     );
@@ -110,7 +111,7 @@ const EditBook = (props) => {
     setImageName(e.target.files[0].name);
   };
 
-  return (
+  return isAnonymous ? null : (
     <div>
       <div id="modal" className="modal">
         <div className="modal-content center">

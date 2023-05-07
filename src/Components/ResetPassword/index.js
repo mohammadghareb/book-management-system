@@ -15,7 +15,7 @@ const ResetPassword = () => {
   const history = useNavigate();
   useEffect(() => {
     if (user) {
-      history("/");
+      history("/login");
     }
   }, [user, history]);
   const handleChange = (event) => {
