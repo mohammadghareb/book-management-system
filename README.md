@@ -14,16 +14,14 @@ This is what a running Book Management System looks like:
 * Search for books by author
 * Register new author account
 * Login 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
+ 
 ### Built With
 
-* [![React][React.js]][React-url]
-* [![Firebase][firebase.google.com]][Firebase-url]
+* [![React][React.js]] 
+* [![Firebase][firebase.google.com]] 
  
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
- ## What is the use of this Repo
+## What is the use of this Repo
 
 This is a ReactJS and Firebase Project which demonstrates the following
 1. Creating a Component in React
@@ -31,5 +29,4 @@ This is a ReactJS and Firebase Project which demonstrates the following
 3. Communicating between parent and child component
 4. Using lastest version of React v18  with Firebase v9
 5. File structure to organize the project
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
+ 
