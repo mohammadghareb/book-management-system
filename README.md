@@ -3,7 +3,7 @@
 > An application used to manage books with different features
 
 This is what a running Book Management System looks like:
-<img src="screenshot.png" style="width: 100%;" />
+<img src="https://github.com/mohammadghareb/book-management-system/blob/version-1.0/src/Assets/Images/screen-homepage.png" style="width: 100%;" />
 
 ## Features
 
