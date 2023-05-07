@@ -18,7 +18,7 @@ This is what a running Book Management System looks like:
 
 ## What is the use of this Repo
 
-This is a ReactJS and Firebase Project which demonstrates the following
+This is a ReactJS and Firebase Project which demonstrates the following:
 1. Creating a Component in React  
 2. Making calls between ReactJs and Firebase
 3. Authentication using Firebase Authentication to register, login and logout
