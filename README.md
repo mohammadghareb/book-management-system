@@ -2,8 +2,13 @@
 
 > An application used to manage books with different features
 
-This is what a running Book Management System looks like:
-<img src="https://github.com/mohammadghareb/book-management-system/blob/version-1.0/src/Assets/Images/screen-homepage.png" style="width: 100%;" />
+This is what a running Book Management System for anonymous user looks like:
+<img src="https://github.com/mohammadghareb/book-management-system/blob/version-1.0/src/Assets/Images/Screenshot-anonymous-user.png" style="width: 100%;" />
+
+
+And this is for logged in authenticated author:
+<img src="https://github.com/mohammadghareb/book-management-system/blob/version-1.0/src/Assets/Images/Screenshot-normal-user.png" style="width: 100%;" />
+
 
 ## Features
 
