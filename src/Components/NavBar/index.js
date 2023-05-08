@@ -8,7 +8,6 @@ import LoginButton from "./LoginButton";
 const NavBar = () => {
   const { isAnonymous } = useContext(AuthContext);
   const pathName = useLocation().pathname;
-  console.log(pathName === "/login", "pathName");
   return (
     <div className="navbar-fixed">
       <nav className="blue-grey darken-2">

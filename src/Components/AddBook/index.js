@@ -14,7 +14,6 @@ const AddBook = () => {
   const { user } = useContext(AuthContext);
   const [values, setValues] = useState({
     title: "",
-    author: "",
     date_published: "",
     brief: "",
     status_published: false,
@@ -23,7 +22,7 @@ const AddBook = () => {
   const [imageName, setImageName] = useState("");
   const [imagePreview, setImagePreview] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const { title, author, date_published, brief, status_published } = values;
+  const { title, date_published, brief, status_published } = values;
   const history = useNavigate();
 
   useEffect(() => {
@@ -66,11 +65,12 @@ const AddBook = () => {
         getDownloadURL(uploadTask.snapshot.ref).then((imageURL) => {
           const newBook = {
             title,
-            author,
+            author: user.displayName,
             date_published,
             brief,
             imageURL,
             status_published: isReadyToPublishDate,
+            userId: user.uid,
           };
 
           addDoc(collection(db, "books"), newBook)
@@ -113,7 +113,6 @@ const AddBook = () => {
   const resetForm = () => {
     setValues({
       title: "",
-      author: "",
       date_published: "",
       brief: "",
       status_published: false,

@@ -7,7 +7,7 @@ import {
 const Books = ({ books, searchAuthor }) => {
   return (
     <div className="col s6 m12">
-      {books.length > 0 ? (
+      {books?.length > 0 ? (
         <div className="row" style={{ padding: "16px" }}>
           {books
             .filter((book) =>

@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
-import { collection, addDoc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 import M from "materialize-css/dist/js/materialize.min.js";
 import { useNavigate } from "react-router-dom";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { db, auth } from "../../Configuration/Firebase";
 import spinner from "../../Assets/Images/loadingSpinner.gif";
 import { AuthContext } from "../../Helpers/AuthProvider";
@@ -26,7 +26,7 @@ const Register = () => {
   const [authorBio, setAuthorBio] = useState("");
   const history = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
-  const { user, setIsAnonymous } = useContext(AuthContext);
+  const { user, setIsAnonymous, setUser } = useContext(AuthContext);
 
   useEffect(() => {
     if (user) {
@@ -39,11 +39,10 @@ const Register = () => {
 
     setIsLoading(true);
     try {
-      const user = await createUserWithEmailAndPassword(auth, email, password);
+      await createUserWithEmailAndPassword(auth, email, password);
 
+      const user = auth.currentUser;
       if (user) {
-        setIsAnonymous(false);
-
         const newAuthor = {
           name,
           email,
@@ -51,14 +50,19 @@ const Register = () => {
           authorBio,
         };
 
-        addDoc(collection(db, "authors"), newAuthor)
+        await updateProfile(user, { displayName: `${name}` })
+          .then(() => {
+            setUser(user);
+            setIsAnonymous(false);
+          })
+          .catch((err) => console.log(err));
+        await setDoc(doc(db, "authors", user.uid), newAuthor)
           .then(() => {
             M.toast({
               html: "Author added succesfully",
               classes: "green darken-1 rounded",
             });
             setIsAnonymous(false);
-
             setIsLoading(false);
           })
           .catch(() => {
@@ -74,6 +78,7 @@ const Register = () => {
     } catch (error) {
       setIsAnonymous(true);
       history("/register");
+      setIsLoading(false);
 
       M.toast({ html: `${error.message}`, classes: "red rounded" });
     }

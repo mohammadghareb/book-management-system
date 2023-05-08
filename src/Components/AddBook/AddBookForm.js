@@ -1,7 +1,6 @@
 import React from "react";
 import {
   CW_ADD_BUTTON_TITLE,
-  CW_ADD_BUTTON_AUTHOR,
   CW_ADD_BUTTON_DATE,
   CW_ADD_BUTTON_BRIEF,
   CW_ADD_BUTTON_COVER_IMAGE,
@@ -32,16 +31,6 @@ const AddBookForm = ({
                 value={values.title}
               />
               <label htmlFor="title">{CW_ADD_BUTTON_TITLE}</label>
-            </div>
-            <div className="input-field col s6">
-              <input
-                id="author"
-                type="text"
-                className="validate"
-                onChange={handleChange("author")}
-                value={values.author}
-              />
-              <label htmlFor="author">{CW_ADD_BUTTON_AUTHOR}</label>
             </div>
 
             <div className="input-field col s4">

@@ -14,6 +14,7 @@ import {
   CW_EDIT_BOOK,
   CW_EDIT_BACK_DASHBOARD,
 } from "../../Constants";
+import canPublishBook from "../../Helpers/date";
 
 const EditBook = (props) => {
   const { user, isAnonymous, setIsAnonymous } = useContext(AuthContext);
@@ -59,6 +60,7 @@ const EditBook = (props) => {
 
     const storageRef = ref(storage, `images/${imageName}`);
     const uploadTask = uploadBytesResumable(storageRef, image);
+    const isReadyToPublishDate = canPublishBook(dateInput.current.value);
 
     uploadTask.on(
       "state_changed",
@@ -70,10 +72,13 @@ const EditBook = (props) => {
         getDownloadURL(uploadTask.snapshot.ref).then(async (imageURL) => {
           const newBook = {
             title: titleInput.current.value,
-            author: authorInput.current.value,
+            author: user.displayName,
             date_published: dateInput.current.value,
             brief: briefInput.current.value,
             imageURL,
+            status_published: isReadyToPublishDate,
+
+            userId: user.uid,
           };
 
           const docBooksRef = doc(db, "books", id);

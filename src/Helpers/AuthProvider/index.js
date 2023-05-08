@@ -12,7 +12,9 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, isAnonymous, setIsAnonymous }}>
+    <AuthContext.Provider
+      value={{ user, isAnonymous, setIsAnonymous, setUser }}
+    >
       {children}
     </AuthContext.Provider>
   );

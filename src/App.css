@@ -85,3 +85,17 @@ input[type="search"]:not(.browser-default) {
     position: static;
   }
 }
+.containerNav {
+  display: flex;
+  width: 100px;
+}
+
+.sideNav {
+  flex: 1;
+  padding: 1px;
+}
+
+.side-content-centerNav {
+  display: flex;
+  align-items: left;
+}

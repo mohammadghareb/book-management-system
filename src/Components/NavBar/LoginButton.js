@@ -1,9 +1,8 @@
 import React from "react";
 import { CW_NAVBAR_LOGIN } from "../../Constants";
-import { logout } from "../../Configuration/Firebase";
 import { useNavigate } from "react-router-dom";
 
-const LogoutButton = () => {
+const LoginButton = () => {
   const history = useNavigate();
   return (
     <div style={{ float: "right", marginRight: "20px" }}>
@@ -17,4 +16,4 @@ const LogoutButton = () => {
   );
 };
 
-export default LogoutButton;
+export default LoginButton;
