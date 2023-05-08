@@ -54,7 +54,7 @@ const CW_DETAILS_BACK = "Back to dashboard";
 
 const CW_DETAILS_TITLE = "Title:";
 const CW_DETAILS_AUTHOR = "Author:";
-const CW_DETAILS_DATE = "Date:";
+const CW_DETAILS_DATE = "Date Published:";
 const CW_DETAILS_BRIEF = "Brief:";
 const CW_DETAILS_PAGE_TITLE = "Details";
 const CW_DETAILS_EDIT = "Edit";

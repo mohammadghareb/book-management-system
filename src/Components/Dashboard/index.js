@@ -1,19 +1,26 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
 import spinner from "../../Assets/Images/loadingSpinner.gif";
 import { AuthContext } from "../../Helpers/AuthProvider";
 import { CW_SEARCH_BY_AUTHOR } from "../../Constants";
 import Books from "./Books";
 import { db } from "../../Configuration/Firebase";
 import { useNavigate } from "react-router-dom";
-import { collection, onSnapshot } from "firebase/firestore";
+import {
+  collection,
+  onSnapshot,
+  getDocs,
+  query,
+  where,
+} from "firebase/firestore";
 import AddButton from "./AddButton";
 const Dashboard = () => {
   const { user, isAnonymous, setIsAnonymous } = useContext(AuthContext);
   const [books, setBooks] = useState([]);
+
   const [isLoading, setIsLoading] = useState(false);
   const [searchAuthor, setSearchAuthor] = useState("");
-  const booksRef = collection(db, "books");
+  const booksRef = collection(db, "/books");
+
   const history = useNavigate();
 
   useEffect(() => {
@@ -21,18 +28,22 @@ const Dashboard = () => {
       setIsAnonymous(true);
     }
     setIsLoading(true);
+    const publishedBooksQuery = user
+      ? query(booksRef, where("userId", "==", user.uid))
+      : query(booksRef, where("status_published", "==", true));
     const unsubscribe = onSnapshot(
-      booksRef,
+      publishedBooksQuery,
       (snapshot) => {
-        const allBooks = snapshot.docs.map((doc) => ({
+        const allPublishedBooks = snapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
         }));
-        setBooks(allBooks);
+
+        setBooks(allPublishedBooks);
         setIsLoading(false);
       },
       function (error) {
-        console.log("error");
+        console.log("error", error);
       }
     );
     return () => unsubscribe();

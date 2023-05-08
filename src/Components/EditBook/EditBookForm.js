@@ -1,7 +1,6 @@
 import React from "react";
 import {
   CW_EDIT_BUTTON_TITLE,
-  CW_EDIT_BUTTON_AUTHOR,
   CW_EDIT_BUTTON_DATE,
   CW_EDIT_BUTTON_BRIEF,
   CW_EDIT_BUTTON_COVER_IMAGE,
@@ -14,7 +13,6 @@ const EditBookForm = ({
   setEditMode,
   uploadImage,
   titleInput,
-  authorInput,
   dateInput,
   briefInput,
 }) => {
@@ -31,16 +29,6 @@ const EditBookForm = ({
               ref={titleInput}
             />
             <label htmlFor="title">{CW_EDIT_BUTTON_TITLE}</label>
-          </div>
-          <div className="input-field col s6">
-            <input
-              id="author"
-              type="text"
-              className="validate"
-              ref={authorInput}
-              defaultValue={book.author}
-            />
-            <label htmlFor="author">{CW_EDIT_BUTTON_AUTHOR}</label>
           </div>
 
           <div className="input-field col s4">
